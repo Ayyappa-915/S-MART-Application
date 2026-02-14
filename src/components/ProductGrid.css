@@ -1,0 +1,163 @@
+/* ============================= */
+/* ===== Products Grid ===== */
+/* ============================= */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  row-gap: 28px;
+  column-gap: 24px;
+}
+
+.btn button
+{
+  width: 100%;
+  margin-top: 5%;
+  padding: 4%;
+  border-radius: 5px;
+  color: white;
+  font-weight: bolder;
+  background-color: rgb(242, 45, 45);
+  cursor: pointer;
+  border: none;
+}
+.btn button:hover
+{
+  border-style: solid;
+  background-color: red;
+}
+/* ============================= */
+/* ===== Product Card ===== */
+/* ============================= */
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.25s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+/* ============================= */
+/* ===== Product Image ===== */
+/* ============================= */
+
+.product-image {
+  height:100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.product-image img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ============================= */
+/* ===== Title ===== */
+/* ============================= */
+
+.product-title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  min-height: 42px;
+  color: #333;
+}
+
+/* ============================= */
+/* ===== Price ===== */
+/* ============================= */
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2874f0;
+  margin-bottom: 1px;
+}
+
+/* ============================= */
+/* ===== Buttons Wrapper ===== */
+/* ============================= */
+
+.product-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* ============================= */
+/* ===== Buttons ===== */
+/* ============================= */
+
+.product-buttons button {
+  flex: 1;
+  border: none;
+  padding: 8px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* Add to Cart */
+.product-buttons button:first-child {
+  background: #2874f0;
+  color: white;
+}
+
+.product-buttons button:first-child:hover {
+  background: #1f5fc4;
+}
+
+/* Wishlist */
+.product-buttons button:last-child {
+  background: orange;
+  color: white;
+  border: 1px solid #ddd;
+}
+
+.product-buttons button:last-child:hover {
+  background: #e8e8e8;
+  background-color: red;
+}
+
+/* ============================= */
+/* ===== Mobile ===== */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .product-card {
+    padding: 12px;
+  }
+
+  .product-image {
+    height: 120px;
+  }
+
+  .product-buttons {
+    flex-direction: column;
+  }
+
+  .product-buttons button {
+    width: 100%;
+  }
+}

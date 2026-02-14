@@ -1,0 +1,15 @@
+
+/* Full layout control */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.main-content {
+  min-height: calc(100vh - 140px); 
+  padding-top: 80px; /* navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(243, 237, 237);
+}

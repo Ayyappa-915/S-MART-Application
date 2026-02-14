@@ -1,0 +1,104 @@
+.fk-filters {
+  width: 90%;
+  font-size: 14px;
+  background-color: white;
+  padding: 5%;
+  border-radius: 5px;
+}
+
+.fk-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Section */
+.fk-section {
+  margin-bottom: 25px;
+}
+
+.fk-section label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #212121;
+}
+
+/* Dropdown */
+.fk-section select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.fk-section select:focus {
+  outline: none;
+  border-color: #2874f0;
+}
+
+/* Price Range */
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-range input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.price-range input:focus {
+  outline: none;
+  border-color: #2874f0;
+}
+
+/* Buttons Container */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Apply Button */
+.apply-btn {
+  flex: 1;
+  padding: 8px;
+  background: #689ff7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.apply-btn:hover {
+  background: #1f5fc4;
+}
+
+/* Reset Button */
+.reset-btn {
+  flex: 1;
+  padding: 8px;
+  background: #f1f3f6;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #e4e6ea;
+}

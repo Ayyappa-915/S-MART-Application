@@ -1,0 +1,95 @@
+/* ===== Page Wrapper (Controlled by App layout) ===== */
+.auth-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+/* ===== Card ===== */
+.auth-card {
+  background-color: #c5d5ed;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: rgb(228, 212, 212);
+  border-style: solid;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2874f0;
+  font-weight: 600;
+}
+
+/* ===== Inputs (No Labels Version) ===== */
+.auth-input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #2874f0;
+  box-shadow: 0 0 0 2px rgba(40, 116, 240, 0.15);
+}
+
+.auth-input::placeholder {
+  color: #888;
+}
+
+/* ===== Button ===== */
+.auth-btn {
+  width: 97%;
+  padding: 12px;
+  background: #2874f0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.auth-btn:hover {
+  background: #1f5fc4;
+}
+
+.auth-btn:active {
+  transform: scale(0.98);
+}
+
+/* ===== Switch Text ===== */
+.auth-switch {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-switch a {
+  color: #2874f0;
+  text-decoration: none;
+  font-weight:bold;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,192 @@
+/* ========================= */
+/* ===== Page Background ===== */
+/* ========================= */
+
+.cart-container {
+  width: 100%;
+  min-height: 80vh;
+  padding: 40px 60px;
+  background: #f5f7fa;
+}
+
+.cart-container h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* ========================= */
+/* ===== Grid Layout ===== */
+/* ========================= */
+
+.cart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* ========================= */
+/* ===== Card ===== */
+/* ========================= */
+
+.cart-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #eaeaea;
+  transition: 0.3s ease;
+}
+
+.cart-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+}
+
+/* ========================= */
+/* ===== Image ===== */
+/* ========================= */
+
+.cart-card img {
+  height: 100px;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+/* ========================= */
+/* ===== Info ===== */
+/* ========================= */
+
+.cart-info h4 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  min-height: 44px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2874f0;
+  margin-bottom: 15px;
+}
+
+/* ========================= */
+/* ===== Quantity Controls ===== */
+/* ========================= */
+
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.quantity-controls button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.quantity-controls button:hover {
+  background: #f1f1f1;
+}
+
+.quantity-controls span {
+  font-weight: 600;
+}
+
+/* ========================= */
+/* ===== Remove Button ===== */
+/* ========================= */
+
+.remove-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #d9363e;
+}
+
+/* ========================= */
+/* ===== Total Section ===== */
+/* ========================= */
+
+.cart-total-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.cart-total-section h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.cart-total-section button {
+  background: #2874f0;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cart-total-section button:hover {
+  background: #1f5fc4;
+}
+
+/* ========================= */
+/* ===== Empty Page ===== */
+/* ========================= */
+
+.empty-page {
+  padding: 80px 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+}
+
+/* ========================= */
+/* ===== Responsive ===== */
+/* ========================= */
+
+@media (max-width: 1024px) {
+  .cart-container {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 20px;
+     margin-top: 5%;
+  margin-bottom: 15%;
+  }
+
+  .cart-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .cart-card img {
+    height: 130px;
+  }
+}
+
