@@ -3,7 +3,7 @@
 .products-layout {
   display: flex;
   width: 100%;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 180px);
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 
-  overflow-y: auto;      /* 🔥 Independent scroll */
+  overflow-y: auto;
   flex-shrink: 0;
 
   scrollbar-width: none;
@@ -54,7 +54,8 @@
 .products-content {
   flex: 1;
   padding: 20px;
-  overflow-y: auto;    /* 🔥 Separate scroll */
+  overflow-y: auto;
+  height: 100%;
 
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -70,6 +71,41 @@
   align-items: center;
 }
 
+/* ================= PAGINATION ================= */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s ease;
+  font-size: 14px;
+}
+
+.pagination button:hover {
+  background: #f0f0f0;
+}
+
+.pagination .active {
+  background: #2874f0;
+  color: white;
+  border-color: #2874f0;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ================= ANIMATION ================= */
 
 @keyframes slideDown {
@@ -83,24 +119,30 @@
   }
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE FIX ================= */
 
 @media (max-width: 992px) {
 
   .products-layout {
     flex-direction: column;
-    height: auto;
-    overflow: visible;
+    height: auto;          /* 🔥 Remove fixed height */
+    overflow: visible;     /* 🔥 Let page scroll */
   }
 
   .sidebar-box {
-    display: none;  /* drawer handles filters & analytics */
+    display: none;         /* Drawer handles this */
   }
 
   .products-content {
-    padding: 0;
-    margin-top: 5%;
-    margin-bottom: 10%;
-    overflow: visible;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    height: auto;          /* 🔥 Remove fixed height */
+    overflow: visible;     /* 🔥 Remove inner scroll */
+  }
+
+  .pagination {
+    margin-bottom: 70px;   /* Space above bottom nav if any */
   }
 }
