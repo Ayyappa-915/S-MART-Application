@@ -5,7 +5,9 @@ const productSlice = createSlice({
   initialState: {
     items: [],
     loading: false,
-    error: null
+    error: null,
+    currentPage: 1,
+    productsPerPage: 8
   },
   reducers: {
     fetchStart: (state) => {
@@ -19,9 +21,18 @@ const productSlice = createSlice({
     fetchFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
     }
   }
 });
 
-export const { fetchStart, fetchSuccess, fetchFailure } = productSlice.actions;
+export const {
+  fetchStart,
+  fetchSuccess,
+  fetchFailure,
+  setCurrentPage
+} = productSlice.actions;
+
 export default productSlice.reducer;
