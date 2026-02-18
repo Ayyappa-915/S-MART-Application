@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
@@ -15,40 +15,67 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  /* Redux State */
+  /* ================= REDUX STATE ================= */
   const cartCount = useSelector((state) => state.cart.items.length);
-  const wishlistCount = useSelector((state) => state.wishlist.items.length);
+  const wishlistCount = useSelector(
+    (state) => state.wishlist.items.length
+  );
   const search = useSelector((state) => state.filters.search);
-  const { items } = useSelector((state) => state.products);
-  const filters = useSelector((state) => state.filters);
 
-  /* Prevent Background Scroll */
+  const {
+    items,
+    currentPage,
+    productsPerPage
+  } = useSelector((state) => state.products);
+
+  const filters = useSelector((state) => state.filters);
+  const { category, minPrice, maxPrice, sort } = filters;
+
+  /* ================= PREVENT BACKGROUND SCROLL ================= */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
     return () => (document.body.style.overflow = "auto");
   }, [menuOpen]);
 
-  /* Filter Logic */
-  const { category, minPrice, maxPrice, sort } = filters;
+  /* ================= FILTER + SORT ================= */
+  const filteredProducts = useMemo(() => {
+    return items
+      .filter((p) => {
+        if (category !== "all" && p.category !== category)
+          return false;
+        if (minPrice && p.price < Number(minPrice))
+          return false;
+        if (maxPrice && p.price > Number(maxPrice))
+          return false;
+        if (
+          search &&
+          !p.title.toLowerCase().includes(search.toLowerCase())
+        )
+          return false;
+        return true;
+      })
+      .sort((a, b) => {
+        if (sort === "low-high") return a.price - b.price;
+        if (sort === "high-low") return b.price - a.price;
+        return 0;
+      });
+  }, [items, category, minPrice, maxPrice, sort, search]);
 
-  const filteredProducts = items
-    .filter((p) => {
-      if (category !== "all" && p.category !== category) return false;
-      if (minPrice !== "" && p.price < Number(minPrice)) return false;
-      if (maxPrice !== "" && p.price > Number(maxPrice)) return false;
-      if (search && !p.title.toLowerCase().includes(search.toLowerCase()))
-        return false;
-      return true;
-    })
-    .sort((a, b) => {
-      if (sort === "low-high") return a.price - b.price;
-      if (sort === "high-low") return b.price - a.price;
-      return 0;
-    });
+  /* ================= PAGINATION LOGIC ================= */
+  const indexOfLast = currentPage * productsPerPage;
+  const indexOfFirst = indexOfLast - productsPerPage;
 
+  const currentProducts = useMemo(() => {
+    return filteredProducts.slice(indexOfFirst, indexOfLast);
+  }, [filteredProducts, indexOfFirst, indexOfLast]);
+
+  /* ================= NAV ITEMS ================= */
   const navItems = [
     { path: "/products", label: "Products" },
-    { path: "/wishlist", label: `Wishlist (${wishlistCount})` },
+    {
+      path: "/wishlist",
+      label: `Wishlist (${wishlistCount})`
+    },
     { path: "/cart", label: `Cart (${cartCount})` },
     { path: "/login", label: "Login" },
     { path: "/register", label: "Register" }
@@ -56,8 +83,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-
-      {/* ===== DESKTOP ===== */}
+      {/* ================= DESKTOP ================= */}
       <div className="desktop-nav">
         <div className="logo">S-MART Application</div>
 
@@ -66,46 +92,60 @@ const Navbar = () => {
             type="text"
             placeholder="Search for Products..."
             value={search}
-            onChange={(e) => dispatch(setSearch(e.target.value))}
+            onChange={(e) =>
+              dispatch(setSearch(e.target.value))
+            }
           />
         </div>
 
         <div className="nav-links">
           {navItems.map((item) => (
-            <NavLink key={item.path} to={item.path} className="nav-link">
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className="nav-link"
+            >
               {item.label}
             </NavLink>
           ))}
         </div>
       </div>
 
-      {/* ===== MOBILE ===== */}
+      {/* ================= MOBILE ================= */}
       <div className="mobile-nav">
-        <div className="mobile-logo">S-MART Application</div>
+        <div className="mobile-logo">
+          S-MART Application
+        </div>
 
         <div className="mobile-search-row">
           <input
             type="text"
             placeholder="Search..."
             value={search}
-            onChange={(e) => dispatch(setSearch(e.target.value))}
+            onChange={(e) =>
+              dispatch(setSearch(e.target.value))
+            }
           />
 
-          <div className="hamburger" onClick={() => setMenuOpen(true)}>
+          <div
+            className="hamburger"
+            onClick={() => setMenuOpen(true)}
+          >
             <FaBars size={24} />
           </div>
         </div>
       </div>
 
-      {/* Overlay */}
+      {/* ================= OVERLAY ================= */}
       <div
         className={`overlay ${menuOpen ? "active" : ""}`}
         onClick={() => setMenuOpen(false)}
       ></div>
 
-      {/* ===== SIDE DRAWER ===== */}
-      <div className={`side-drawer ${menuOpen ? "open" : ""}`}>
-
+      {/* ================= SIDE DRAWER ================= */}
+      <div
+        className={`side-drawer ${menuOpen ? "open" : ""}`}
+      >
         <div className="drawer-header">
           <span>Menu</span>
           <button onClick={() => setMenuOpen(false)}>
@@ -125,11 +165,13 @@ const Navbar = () => {
           </NavLink>
         ))}
 
-        {/* ===== FILTER DROPDOWN ===== */}
+        {/* ===== FILTER SECTION ===== */}
         <div className="drawer-section">
           <div
             className="drawer-section-header"
-            onClick={() => setShowFilters(!showFilters)}
+            onClick={() =>
+              setShowFilters(!showFilters)
+            }
           >
             <span>Filters</span>
             <span className="drawer-icon">
@@ -143,16 +185,20 @@ const Navbar = () => {
 
           {showFilters && (
             <div className="drawer-section-content">
-              <Filters onApply={() => setMenuOpen(false)} />
+              <Filters
+                onApply={() => setMenuOpen(false)}
+              />
             </div>
           )}
         </div>
 
-        {/* ===== ANALYTICS DROPDOWN ===== */}
+        {/* ===== ANALYTICS SECTION ===== */}
         <div className="drawer-section">
           <div
             className="drawer-section-header"
-            onClick={() => setShowChart(!showChart)}
+            onClick={() =>
+              setShowChart(!showChart)
+            }
           >
             <span>Analytics</span>
             <span className="drawer-icon">
@@ -166,11 +212,13 @@ const Navbar = () => {
 
           {showChart && (
             <div className="drawer-section-content">
-              <ProductLineChart products={filteredProducts} />
+              {/* 🔥 Now reflects visible page */}
+              <ProductLineChart
+                products={currentProducts}
+              />
             </div>
           )}
         </div>
-
       </div>
     </nav>
   );
